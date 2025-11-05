@@ -1,0 +1,29 @@
+clc;
+clear;
+close;
+
+total_bandwidth = 60e6;
+channel_bandwidth = 25e3 * 2;
+radius = 2.15;
+cluster_area = 1200;
+
+cluster_size = 7;
+
+total_channels = total_bandwidth / channel_bandwidth;
+
+cell_area = floor((3 * sqrt(3) / 2) * (radius^2));
+
+total_cluster_area = cluster_area;
+
+number_of_clusters = total_cluster_area / cell_area;
+
+channels_per_cell = floor(total_channels / cluster_size);
+
+system_capacity = floor(number_of_clusters * channels_per_cell);
+
+disp("Total Available Channels: " + string(total_channels));
+disp("Area of the Cell (sq.km): " + string(cell_area));
+disp("Total Cluster Area (sq.km): " + string(total_cluster_area));
+disp("Number of Clusters: " + string(number_of_clusters));
+disp("Channels per Cell: " + string(channels_per_cell));
+disp("Total System Capacity (number of simultaneous calls): " + string(system_capacity));
