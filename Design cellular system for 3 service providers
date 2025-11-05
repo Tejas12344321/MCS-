@@ -1,0 +1,37 @@
+clc;
+clear;
+close;
+
+total_population = 2000000;
+Au = 2*(3/60);
+
+cells_A = 394;
+channels_A = 19;
+A_A = 12;
+users_per_cell_A = A_A/Au;
+total_users_A = users_per_cell_A*cells_A;
+penetration_A = (total_users_A/total_population)*100;
+
+cells_B = 98;
+channels_B = 57;
+A_B = 47;
+users_per_cell_B = A_B/Au;
+total_users_B = users_per_cell_B*cells_B;
+penetration_B = (total_users_B/total_population)*100;
+
+cells_C = 49;
+channels_C = 100;
+A_C = 88;
+users_per_cell_C = A_C/Au;
+total_users_C = users_per_cell_C*cells_C;
+penetration_C = (total_users_C/total_population)*100;
+
+total_supported_users = total_users_A + total_users_B + total_users_C;
+combined_penetration = (total_supported_users/total_population)*100;
+
+disp("Market Penetration Data");
+printf("System A supports %.0f users (%.2f%% of population)\n", total_users_A, penetration_A);
+printf("System B supports %.0f users (%.2f%% of population)\n", total_users_B, penetration_B);
+printf("System C supports %.0f users (%.2f%% of population)\n", total_users_C, penetration_C);
+printf("Total supported users: %.0f\n", total_supported_users);
+printf("Combined Market penetration: %.2f%%\n", combined_penetration);
