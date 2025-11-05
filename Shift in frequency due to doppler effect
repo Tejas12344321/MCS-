@@ -1,0 +1,28 @@
+clear;      % Clear previous variables
+clc;        % Clear console
+
+% Define constants
+fc = 1.85e9;         % Carrier frequency in Hz (1850 MHz)
+v = 60 * 1000 / 3600; % Speed in m/s (60 km/hr)
+c = 3e8;             % Speed of light in m/s
+
+% Function to calculate received frequency
+function fr = doppler_frequency(theta_deg)
+    theta_rad = theta_deg * pi / 180;   % Convert degrees to radians
+    doppler_factor = (v * cos(theta_rad)) / c;
+    fr = fc * (1 + doppler_factor);     % Received frequency in Hz
+    fr_MHz = fr / 1e6;                  % Convert to MHz
+end
+
+% Calculate for each case
+theta_values = [0, 180, 90, 60, 120]; % Angles in degrees
+case_labels = ["Moving toward Tx (theta = 0°)", ...
+               "Moving away from Tx (theta = 180°)", ...
+               "Moving perpendicular to Tx (theta = 90°)", ...
+               "Moving toward Tx at 60°", ...
+               "Moving away from Tx at 60° (theta = 120°)"];
+
+for i = 1:length(theta_values)
+    fr = doppler_frequency(theta_values(i));
+    printf("%s: fr = %.6f MHz\n", case_labels(i), fr);
+end
